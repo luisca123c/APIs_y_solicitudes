@@ -11,8 +11,9 @@ const peticion6 = async() =>{
         'Content-type': 'application/json; charset=UTF-8',
     },
     })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+    const post_actualizado = await actualizacion_post.json();
+    console.log(`Peticion 6: Publicacion actualizada completamente (ID=1)`);
+    console.log(post_actualizado);
 }
 const peticion7 = async() =>{
     let cambio_post = await fetch('http://localhost:3000/posts/1', {
@@ -24,8 +25,14 @@ const peticion7 = async() =>{
     'Content-type': 'application/json; charset=UTF-8',
   },
 })
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+  const post_cambiado = await cambio_post.json();
+  console.log(`Peticion 7: Publicacion actualizada parcialmente (ID=1)`);
+  console.log(post_cambiado);
 }
-peticion6();
-peticion7();
+
+const ejecutarPeticiones = async () => {
+    await peticion6();
+    await peticion7();
+}
+
+ejecutarPeticiones();
