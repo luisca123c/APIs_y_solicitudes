@@ -9,15 +9,11 @@ const peticion4 = async () =>{
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
   },
-});
-  new Promise((resolve) => {
-    let Proceso = true;
-    if (Proceso) {
-        console.log("Peticion 4: Nueva publicacion creada");
-        resolve(post);
-    }
-    }).then((response) => response.json())
-  .then((json) => console.log(json));
+})
+  const nuevo_post = await post.json();
+  console.log(`Peticion 4: Nueva publicacion creada por un usuario existente`);
+  console.log(nuevo_post);
+  
 }
 
 const peticion5 = async() =>{
@@ -32,15 +28,17 @@ const peticion5 = async() =>{
     'Content-type': 'application/json; charset=UTF-8',
   },
 })
-  new Promise((resolve) => { 
-    let Proceso = true;
-    if (Proceso) {
-        console.log("Peticion 5: Nuevo comentario creado en una publicacion ya existente");
-        resolve(comentario);
-    }
-    }).then((response) => response.json())
-  .then((json) => console.log(json));
+  const nuevo_comentario = await comentario.json();
+  console.log(`Peticion 5: Nuevo comentario creado para una publicacion existente`);
+  console.log(nuevo_comentario);
 }
 
-peticion4().then(() => console.log("\n"));
-peticion5().then(() => console.log("\n"));
+// peticion4().then((post) => console.log(post.json()));
+// peticion5().then((comentario) => console.log(comentario.json()));
+
+const ejecutarPeticiones = async () => {
+    await peticion4();
+    await peticion5();
+}
+
+ejecutarPeticiones();
